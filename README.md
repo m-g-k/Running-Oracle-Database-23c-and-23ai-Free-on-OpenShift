@@ -1,0 +1,1 @@
+# Running-Oracle-Database-23c-Free-on-OpenShift
