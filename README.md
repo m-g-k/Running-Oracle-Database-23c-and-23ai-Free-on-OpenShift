@@ -179,7 +179,7 @@ At the new `rsh` prompt enter the command below. In this command, the `$ORACLE_P
 `sqlplus sys/$ORACLE_PWD as sysdba`
 
 ```text
-SQL*Plus: Release 23.0.0.0.0 - Production on Sat Mar 23 14:31:46 2024
+sh-4.4$ SQL*Plus: Release 23.0.0.0.0 - Production on Sat Mar 23 14:31:46 2024
 Version 23.3.0.23.09
 
 Copyright (c) 1982, 2023, Oracle.  All rights reserved.
