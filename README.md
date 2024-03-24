@@ -278,7 +278,7 @@ The `deploy-oracle23-db-free.yaml` file in the `config` folder creates the follo
 * A `PersistentVolumeClaim` to provide the storage for the database.
 * A `StatefulSet` which creates a single instance of a `Pod` that has two containers.
   * An `initContainer` for initialisation which is explained below.
-  * A regular container which hosts the Oracle DB. These containers run under the `oracle-sa` Service Account you created above. This is specified in the `serviceAccountName` section wich ties the Pod to the `anyuid` SCC, via the Service Account.
+  * A regular container which hosts the Oracle DB. These containers run under the `oracle-sa` Service Account you created above. This is specified in the `serviceAccountName` section which ties the Pod to the `anyuid` SCC, via the Service Account.
 
 ## How this works
 
