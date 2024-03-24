@@ -194,7 +194,7 @@ SQL>
 
 Next, you can make sure that the `FREEDPB1` DB is open:
 
-`alter pluggable database FREEPDB1 OPEN;`
+`SQL> alter pluggable database FREEPDB1 OPEN;`
 
 ```text
 Session altered.
@@ -220,7 +220,7 @@ Session altered.
 
 If you uploaded a file of SQL commands earlier, you can execute them now:
 
-`@ /opt/oracle/oradata/oracle.sql`
+`SQL> @ /opt/oracle/oradata/oracle.sql`
 
 We can also execute other SQL commands, for example:
 
