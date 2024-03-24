@@ -77,9 +77,9 @@ statefulset.apps/oracle-db created
 It will take several minutes before Oracle is ready to use, but any subsequent restarts will be much faster. The first time it runs it takes time to pull the Oracle container images and then more time to copy the database files into the dynamically allocated storage. You can watch the logs by running `oc logs oracle-db-0 -c oracle-db -f` to view the progress. If all goes well you should see output similar to this abbreviated output:
 
 ```text
-Specify a password to be used for database accounts. Oracle recommends that the password entered should be at least 8 characters in length,
-contain at least 1 uppercase character, 1 lower case character and 1 digit [0-9].
-Note that the same password will be used for SYS, SYSTEM and PDBADMIN accounts:
+Specify a password to be used for database accounts. Oracle recommends that the password entered
+should be at least 8 characters in length, contain at least 1 uppercase character, 1 lower case
+character and 1 digit [0-9]. Note that the same password will be used for SYS, SYSTEM and PDBADMIN accounts:
 Confirm the password:
 Configuring Oracle Listener.
 Listener configuration succeeded.
