@@ -1,0 +1,88 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: oracle-db-svc
+  labels:
+    app: oracle-db
+spec:
+  ports:
+    - port: 1521
+  selector:
+    app: oracle-db
+  clusterIP: None
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: oracle-db-pvc
+  labels:
+    app: oracle-db
+spec:
+  accessModes:
+    - ReadWriteOncePod
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: ocs-storagecluster-ceph-rbd
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: oracle-db
+  labels:
+    app: oracle-db
+spec:
+  serviceName: oracle-db-svc
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oracle-db
+  template:
+    metadata:
+      labels:
+        app: oracle-db
+    spec:
+      initContainers:
+      - name: init-oracle
+        image: registry.access.redhat.com/ubi9/ubi:latest
+        command: ['/usr/bin/bash', '-c']
+        args:
+          - echo starting permissions check on /opt/oracle/oradata/;
+            ls -al /opt/oracle/;
+            if [ -f "/opt/oracle/oradata/PERMS.SET" ]; then
+              echo permissions already set;
+            else
+              chown -R 54321:54321 /opt/oracle/oradata;
+              ls -al /opt/oracle/;
+              touch /opt/oracle/oradata/PERMS.SET;
+              echo permissions set;
+            fi;
+            echo finished;
+        securityContext:
+          runAsUser: 0 
+        volumeMounts:
+        - name: oracle-db-persistent-storage
+          mountPath: /opt/oracle/oradata
+      containers:
+      - name: oracle-db
+        image: container-registry.oracle.com/database/free:latest
+        env:
+        - name: ORACLE_PWD
+          valueFrom:
+            secretKeyRef:
+              name: oracle-db-pass
+              key: password
+        ports:
+        - containerPort: 1521
+          name: oracle-db
+        volumeMounts:
+        - name: oracle-db-persistent-storage
+          mountPath: /opt/oracle/oradata
+        securityContext:
+          runAsUser: 54321
+      serviceAccountName: oracle-sa
+      volumes:
+      - name: oracle-db-persistent-storage
+        persistentVolumeClaim:
+          claimName: oracle-db-pvc
