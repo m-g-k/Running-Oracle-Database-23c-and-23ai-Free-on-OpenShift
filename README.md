@@ -176,10 +176,10 @@ sh-4.4$
 
 At the new `rsh` prompt enter the command below. In this command, the `$ORACLE_PWD` environment variable has been populated from the secret you created earlier:
 
-`sqlplus sys/$ORACLE_PWD as sysdba`
+`sh-4.4$ sqlplus sys/$ORACLE_PWD as sysdba`
 
 ```text
-sh-4.4$ SQL*Plus: Release 23.0.0.0.0 - Production on Sat Mar 23 14:31:46 2024
+SQL*Plus: Release 23.0.0.0.0 - Production on Sat Mar 23 14:31:46 2024
 Version 23.3.0.23.09
 
 Copyright (c) 1982, 2023, Oracle.  All rights reserved.
@@ -238,7 +238,7 @@ When you are done you can leave the SQL prompt by entering `exit`. In order to l
 
 From the `rsh` prompt you can also access Oracle via the Service that was created earlier:
 
-`sqlplus sys/$ORACLE_PWD@oracle-db-svc.oracle-db.svc.cluster.local:1521/FREEPDB1 as sysdba`
+`sh-4.4$ sqlplus sys/$ORACLE_PWD@oracle-db-svc.oracle-db.svc.cluster.local:1521/FREEPDB1 as sysdba`
 
 This shows that other pods on the same cluster can connect to the Oracle instance via the Service. This address would also be the one to use to connect from a client application running elsewhere in the cluster.
 
