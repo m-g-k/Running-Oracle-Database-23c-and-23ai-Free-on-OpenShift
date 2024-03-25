@@ -202,7 +202,8 @@ Next, you can make sure that the `FREEDPB1` DB is open:
 Session altered.
 ```
 
-Note that this may give a harmless error if `FREEPDB1` is already open which you can ignore:
+> [!NOTE]
+> This may give a harmless error if `FREEPDB1` is already open, which you can ignore:
 
 ```text
 alter pluggable database FREEPDB1 OPEN
@@ -289,7 +290,9 @@ The `deploy-oracle23-db-free.yaml` file in the `config` folder creates the follo
 The first problem you hit when trying to run Oracle on OpenShift for the first time is that Oracle wants to run with the UID and GID `54321`. This is easily overcome by applying the built in `anyuid` SCC as you do above. However, this is not enough to make it work. Although the Oracle container will start, it will crash after a few seconds when it starts copying the database files to the persistent volume and the logs will look something like this:
 
 ```text
-Specify a password to be used for database accounts. Oracle recommends that the password entered should be at least 8 characters in length, contain at least 1 uppercase character, 1 lower case character and 1 digit [0-9]. Note that the same password will be used for SYS, SYSTEM and PDBADMIN accounts:
+Specify a password to be used for database accounts. Oracle recommends that the password entered
+should be at least 8 characters in length, contain at least 1 uppercase character, 1 lower case
+character and 1 digit [0-9]. Note that the same password will be used for SYS, SYSTEM and PDBADMIN accounts:
 Confirm the password:
 Configuring Oracle Listener.
 Listener configuration succeeded.
