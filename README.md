@@ -247,7 +247,8 @@ This shows that other pods on the same cluster can connect to the Oracle instanc
 
 ## Cleaning up
 
-To delete the database and clean up the namespace you can run the following commands. 
+To delete the database and clean up the namespace you can run the following commands.
+
 > [!CAUTION]
 > This will delete all the data in the Database:
 
