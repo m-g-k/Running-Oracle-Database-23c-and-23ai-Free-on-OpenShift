@@ -246,7 +246,9 @@ This shows that other pods on the same cluster can connect to the Oracle instanc
 
 ## Cleaning up
 
-To delete the database and clean up the namespace you can run the following commands. **WARNING: this will delete all the data in the Database:**
+To delete the database and clean up the namespace you can run the following commands. 
+> [!CAUTION]
+> This will delete all the data in the Database:
 
 `oc delete -f ./config/deploy-oracle23-db-free.yaml`
 
