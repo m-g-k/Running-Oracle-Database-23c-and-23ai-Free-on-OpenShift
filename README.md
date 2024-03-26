@@ -2,7 +2,7 @@
 
 ## Background
 
-This guide provides instructions for getting the free version of Oracle Database 23c running on OpenShift 4.14. Oracle make a [free version of their database](https://www.oracle.com/database/free/) available for download. It is available in VM or [container](https://container-registry.oracle.com/ords/ocr/ba/database/free) form factors, and the container version includes instructions for running locally using Podman. However, it does not include instructions for running on OpenShift. There are also several [documented restrictions](https://www.oracle.com/database/free/faq/) on the usable memory, storage and compute when using the free version which make it most suitable for development or test scenarios.
+This guide provides instructions for running the free version of Oracle Database 23c on OpenShift 4.14. Oracle make a [free version of their database](https://www.oracle.com/database/free/) available for download. It is available in VM or [container](https://container-registry.oracle.com/ords/ocr/ba/database/free) form factors, and the container version includes instructions for running locally using Podman. However, it does not include instructions for running on OpenShift. There are also several [documented restrictions](https://www.oracle.com/database/free/faq/) on the usable memory, storage and compute when using the free version which make it most suitable for development or test scenarios.
 
 Running on OpenShift is not straightforward due to the security requirements and this guide documents the process by providing the definitions to create the components needed. Be aware that this is designed to be used in a PoC, demo, development or test environment and not in production.
 
