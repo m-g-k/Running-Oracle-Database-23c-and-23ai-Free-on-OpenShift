@@ -52,7 +52,7 @@ Verb:      use
 Resource:  securitycontextconstraints.security.openshift.io
 
 Users: ...
-       system:serviceaccount:oracle-db:oracle
+       system:serviceaccount:oracle-db:oracle-sa
        ...
 ```
 
