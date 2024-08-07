@@ -1,12 +1,12 @@
-# Running Oracle Database 23c Free on OpenShift
+# Running Oracle Database 23c and 23ai Free on OpenShift
 
-## Background
+## Overview
 
-This guide provides instructions for running the free version of Oracle Database 23c on OpenShift 4.14. Oracle make a [free version of their database](https://www.oracle.com/database/free/) available for download in RPM, VM or [container](https://container-registry.oracle.com/ords/ocr/ba/database/free) form factors. The container version includes instructions for running locally using Podman, however it does not include instructions for running on OpenShift. There are also several [documented restrictions](https://www.oracle.com/database/free/faq/) on the usable memory, storage and compute when using the free version which make it most suitable for development or test scenarios.
+This guide provides instructions for running the free version of Oracle Database 23c (`23.3.0.0`) and 23ai (`23.4.0.0`) on OpenShift 4.14. It also includes instructions on using the 23ai lite (`23.4.0.0-lite`) image as well if required. Oracle make a [free version of their database](https://www.oracle.com/database/free/) available for download in RPM, VM or [container](https://container-registry.oracle.com/ords/ocr/ba/database/free) form factors. The container version includes instructions for running locally using Podman, but it does not include instructions for running on OpenShift which is where this guide comes in. There are also several [documented restrictions](https://www.oracle.com/database/free/faq/) on the usable memory, storage and compute when using the free version which make it most suitable for development or test scenarios.
 
-Running on OpenShift is not straightforward due to the security requirements and this guide documents the process by providing the definitions to create the components needed. Be aware that this is designed to be used in a PoC, demo, development or test environment and not in production.
+Running Oracle Database on OpenShift is not straightforward due to the security requirements and this guide documents the process by providing the definitions to create the components needed. Be aware that this is designed to be used in a PoC, demo, development or test environment and not in production.
 
-## Steps to Create the Oracle DB
+## Pre-req steps to create the Oracle DB
 
 First, create a new project (namespace) in which to run everything:
 
@@ -64,7 +64,12 @@ Now you create a secret to store the default password for Oracle to use by repla
 secret/oracle-db-pass created
 ```
 
-Finally you can apply the yaml file in the `config` folder in this repo to deploy Oracle. Note that this file assumes a `storageClassName` of `ocs-storagecluster-ceph-rbd` by default to provide `ReadWriteOncePod` (RWOP) storage. If your RWOP storage class has a different name, please change the `storageClassName` to the one for your environment.
+### Choosing which image to run
+By default the most recently published Oracle container (`latest`) will be deployed. At the time of writing this is 23ai (`23.4.0.0`). If you want to deploy 23c (`23.3.0.0`) instead change the image on line 69 from:
+`image: container-registry.oracle.com/database/free:latest` to `image: container-registry.oracle.com/database/free:23.3.0.0`. If you wish you can use the lite version of the 23ai image instead by using the iamge `image: container-registry.oracle.com/database/free:23.4.0.0-lite` instead. The lite image is significantly (~80%) smaller and faster to start if you can live with the [limitations](https://container-registry.oracle.com/ords/ocr/ba/database/free).
+
+## Creating the DB
+Now you can apply the yaml file in the `config` folder in this repo to deploy Oracle. Note that this file assumes a `storageClassName` of `ocs-storagecluster-ceph-rbd` by default to provide `ReadWriteOncePod` (RWOP) storage. If your RWOP storage class has a different name, please change the `storageClassName` to the one for your environment. 
 
 `oc apply -f ./config/deploy-oracle23-db-free.yaml`
 
@@ -74,7 +79,7 @@ persistentvolumeclaim/oracle-db-pvc created
 statefulset.apps/oracle-db created
 ```
 
-It will take several minutes before Oracle is ready to use, but any subsequent restarts will be much faster. The first time it runs it takes time to pull the Oracle container images and then more time to copy the database files into the dynamically allocated storage. You can watch the logs by running `oc logs oracle-db-0 -c oracle-db -f` to view the progress. If all goes well you should see output similar to this abbreviated output:
+It will take several minutes before Oracle is ready to use, but any subsequent restarts will be much faster. The first time it runs it takes time to pull the Oracle container images and then more time to copy the database files into the dynamically allocated storage. You can watch the logs by running `oc logs oracle-db-0 -c oracle-db -f` to view the progress. If all goes well you should see output similar to this abbreviated output from running the 23c image:
 
 ```text
 Specify a password to be used for database accounts. Oracle recommends that the password entered
