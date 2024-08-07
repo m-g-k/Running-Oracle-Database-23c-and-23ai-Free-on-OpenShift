@@ -2,7 +2,9 @@
 
 ## Overview
 
-This guide provides instructions for running the free version of Oracle Database 23c (`23.3.0.0`) and 23ai (`23.4.0.0`) on OpenShift 4.14. It also includes instructions on using the 23ai lite (`23.4.0.0-lite`) image as well if required. Oracle make a [free version of their database](https://www.oracle.com/database/free/) available for download in RPM, VM or [container](https://container-registry.oracle.com/ords/ocr/ba/database/free) form factors. The container version includes instructions for running locally using Podman, but it does not include instructions for running on OpenShift which is where this guide comes in. There are also several [documented restrictions](https://www.oracle.com/database/free/faq/) on the usable memory, storage and compute when using the free version which make it most suitable for development or test scenarios.
+This guide provides instructions for running the free version of Oracle Database 23c (`23.3.0.0`) and 23ai (`23.4.0.0`) on OpenShift 4.14. It also includes instructions on using the 23ai lite (`23.4.0.0-lite`) image as well if required. 
+
+Oracle make a [free version of their database](https://www.oracle.com/database/free/) available for download in RPM, VM or [container](https://container-registry.oracle.com/ords/ocr/ba/database/free) form factors. The container version includes instructions for running locally using Podman, but it does not include instructions for running on OpenShift which is where this guide comes in. There are also several [documented restrictions](https://www.oracle.com/database/free/faq/) on the usable memory, storage and compute when using the free version which make it most suitable for development or test scenarios.
 
 Running Oracle Database on OpenShift is not straightforward due to the security requirements and this guide documents the process by providing the definitions to create the components needed. Be aware that this is designed to be used in a PoC, demo, development or test environment and not in production.
 
