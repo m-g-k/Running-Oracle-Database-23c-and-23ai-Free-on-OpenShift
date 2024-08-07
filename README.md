@@ -67,8 +67,8 @@ secret/oracle-db-pass created
 ```
 
 ### Choosing which image to run
-By default the most recently published Oracle container (`latest`) will be deployed. At the time of writing this is 23ai (`23.4.0.0`). If you want to deploy 23c (`23.3.0.0`) instead change the image on line 69 from:
-`image: container-registry.oracle.com/database/free:latest` to `image: container-registry.oracle.com/database/free:23.3.0.0`. If you wish you can use the lite version of the 23ai image instead by using the iamge `image: container-registry.oracle.com/database/free:23.4.0.0-lite` instead. The lite image is significantly (~80%) smaller and faster to start if you can live with the [limitations](https://container-registry.oracle.com/ords/ocr/ba/database/free).
+By default the most recently published Oracle container (`latest`) will be deployed. At the time of writing this is 23ai (`23.4.0.0`). If you want to deploy 23c (`23.3.0.0`) instead change the image on line 69 of the `./config/deploy-oracle23-db-free.yaml` file from:
+`image: container-registry.oracle.com/database/free:latest` to `image: container-registry.oracle.com/database/free:23.3.0.0`. If you wish you can use the lite version of the 23ai image by using `image: container-registry.oracle.com/database/free:23.4.0.0-lite` instead. The lite image is significantly (~80%) smaller and faster to start if you can live with the [limitations](https://container-registry.oracle.com/ords/ocr/ba/database/free).
 
 ## Creating the DB
 Now you can apply the yaml file in the `config` folder in this repo to deploy Oracle. Note that this file assumes a `storageClassName` of `ocs-storagecluster-ceph-rbd` by default to provide `ReadWriteOncePod` (RWOP) storage. If your RWOP storage class has a different name, please change the `storageClassName` to the one for your environment. 
